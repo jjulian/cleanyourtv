@@ -25,7 +25,10 @@
 #   declares HOME; a base-only reinstall of a split APK gives INSTALL_FAILED_VERIFICATION_FAILURE, which is not a block.
 # - The remote is a Bluetooth remote. To pair a new one, hold OK + Apps (bottom right button) together for 6 seconds and release;
 #   the "Pairing your remote" screen is part of the stock launcher. Its buttons: D-pad, OK, Back, Home, Apps (sends
-#   KEYCODE_APP_SWITCH), Mic (KEY_SEARCH), Mute, Play/Pause, Volume. No app buttons. Non-functional buttons: INPUT, center color button
+#   KEYCODE_APP_SWITCH), the centre colour button (Assistant, KEYCODE_ASSIST 219), Mute, Play/Pause, Volume. No app buttons.
+#   INPUT sends no key at all (probably an infrared TV-control button). The colour button is handled by the system and
+#   needs com.google.android.katniss enabled; with it disabled it does nothing, and neither app_keys nor an ASSIST
+#   activity in the custom launcher could catch it.
 # - With the stock launcher off the Apps button does nothing. The custom launcher answers it through HomeKeyService
 #   (HOME_KEY_SERVICE=1) once it also accepts KEYCODE_APP_SWITCH.
 # - The TV installed a firmware update (Android 10 QTT8.201201.004 to this build) while the work was in progress, so keep
@@ -35,7 +38,7 @@
 #   and ships Firebase Crashlytics. Disabling it left the remote, Bluetooth pairing and Home working.
 # - Screenshots work on Home and in apps. AdGuard Private DNS (dns.adguard-dns.com) works and YouTube still loads.
 #
-# Kept on purpose: com.omni.ota (firmware updates, by owner's choice), com.omni.simplesetup, com.google.android.tv
+# Kept on purpose: com.google.android.katniss (the colour button is voice search), com.omni.ota (firmware updates, by owner's choice), com.omni.simplesetup, com.google.android.tv
 # (Live TV), tv.pluto.android (Pluto TV: the only TV input on this box, see the Live TV note above), com.google.android.tv.remote.service (phone remote), com.google.android.inputmethod.latin (keyboard),
 # Play Store, Play Services, Bluetooth, com.droidlogic.* and com.android.tv.settings, Netflix, Prime Video, YouTube,
 # Disney+, Hulu.
@@ -46,7 +49,6 @@
 com.verizon.tv.ams                             # Verizon app/screen/power event recorder + Crashlytics
 
 # Off by owner's choice
-com.google.android.katniss                     # Assistant; the mic button does nothing without it
 com.google.android.apps.mediashell             # Chromecast built-in
 com.google.android.backdrop                    # ambient screensaver
 com.google.android.marvin.talkback             # TalkBack
